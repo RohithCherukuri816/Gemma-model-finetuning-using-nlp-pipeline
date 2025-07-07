@@ -16,7 +16,6 @@ A QA chatbot powered by a fine-tuned Gemma-2B-IT language model, designed for an
 ├── finetune.py           # Script for fine-tuning the model
 ├── requirements.txt      # Python dependencies
 ├── index.html            # Landing page for the chatbot demo
-├── visualizations.ipynb  # Data analysis and visualization notebook
 ├── templates/
 │   └── first.html        # Web chat interface template
 └── myenv/                # (Optional) Python virtual environment
@@ -64,8 +63,8 @@ python backend.py
 ```
 This serves a web page (`first.html`) and a REST API for chatbot queries.
 
-### 4. Visualizations
-Open `visualizations.ipynb` in Jupyter Notebook to explore chatbot usage and model performance analytics.
+### 4. Deployment
+The Finetuned Gemma model was deployed inside [Hugging Face](https://huggingface.co/spaces/vinayabc1824/gemma-chatbot) spaces.
 
 ## Web Interfaces
 - **index.html**: Main landing page with information and an embedded chatbot demo.
