@@ -1,0 +1,7 @@
+transformers
+peft
+trl
+datasets
+gradio
+torch
+huggingface_hub 

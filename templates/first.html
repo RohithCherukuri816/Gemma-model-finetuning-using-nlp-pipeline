@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gemma Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      padding-top: 100px;
+    }
+    .chat-container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .response {
+      margin-top: 20px;
+      padding: 10px;
+      background: #f1f1f1;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <h2>Gemma Chatbot 🤖</h2>
+    <input type="text" id="questionInput" placeholder="Ask a question..." />
+    <button onclick="askQuestion()">Ask</button>
+    <div id="response" class="response"></div>
+  </div>
+
+  <script>
+    async function askQuestion() {
+      const question = document.getElementById("questionInput").value;
+      const responseBox = document.getElementById("response");
+      responseBox.innerText = "Thinking...";
+
+      try {
+        const res = await fetch("http://127.0.0.1:5000/ask", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question }),
+        });
+
+        const data = await res.json();
+        if (data.answer) {
+          responseBox.innerText = data.answer;
+        } else {
+          responseBox.innerText = "❌ Error: " + data.error;
+        }
+      } catch (error) {
+        responseBox.innerText = "❌ Network error: " + error;
+      }
+    }
+  </script>
+</body>
+</html>
